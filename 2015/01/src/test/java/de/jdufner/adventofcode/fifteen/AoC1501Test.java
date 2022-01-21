@@ -165,7 +165,31 @@ class AoC1501Test {
     }
 
     @Test
-    void testInput() throws Exception {
+    void testCountBracketsByBaseLevel1() {
+        // arrange
+        AoC1501 aoC1501 = new AoC1501();
+
+        // act
+        int index = aoC1501.countBracketsByBaseLevel(")");
+
+        // assert
+        assertEquals(1, index);
+    }
+
+    @Test
+    void testCountBracketsByBaseLevel2() {
+        // arrange
+        AoC1501 aoC1501 = new AoC1501();
+
+        // act
+        int index = aoC1501.countBracketsByBaseLevel("()())");
+
+        // assert
+        assertEquals(5, index);
+    }
+
+    @Test
+    void part1() throws Exception {
         // arrange
         Path filename = Path.of("./2015/01/src/test/resources/input");
         String content = Files.readString(filename);
@@ -177,6 +201,21 @@ class AoC1501Test {
 
         // assert
         assertEquals(74, level);
+    }
+
+    @Test
+    void part2() throws Exception {
+        // arrange
+        Path filename = Path.of("./2015/01/src/test/resources/input");
+        String content = Files.readString(filename);
+        AoC1501 aoC1501 = new AoC1501();
+
+        // act
+        int index = aoC1501.countBracketsByBaseLevel(content);
+        System.out.println(index);
+
+        // assert
+        assertEquals(1795, index);
     }
 
 }

@@ -1,5 +1,7 @@
 package de.jdufner.adventofcode.fifteen;
 
+import java.nio.charset.StandardCharsets;
+
 class AoC1501 {
 
     static int levelByBracket(int bracket) {
@@ -14,5 +16,15 @@ class AoC1501 {
         return s.chars().map(AoC1501::levelByBracket).sum();
     }
 
+    int countBracketsByBaseLevel(String s) {
+        int level = 0;
+        int index = 0;
+        byte[] chars = s.getBytes(StandardCharsets.UTF_8);
+        while (level >= 0) {
+            level += levelByBracket(chars[index]);
+            index++;
+        }
+        return index;
+    }
 
 }
