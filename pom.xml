@@ -7,11 +7,54 @@
     <groupId>de.jdufner</groupId>
     <artifactId>adventofcode</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
-    
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>5.8.1</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License 3</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <url>https://github.com/jdufner/adventofcode/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.com:jdufner/adventofcode.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:jdufner/adventofcode.git</developerConnection>
+        <url>https://github.com/jdufner/adventofcode</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>jdufner</id>
+            <name>Jürgen Dufner</name>
+            <email>juergen@jdufner.de</email>
+            <timezone>Europe/Berlin</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
 </project>
