@@ -2,15 +2,12 @@ package de.jdufner.adventofcode.fifteen;
 
 import org.junit.jupiter.api.Test;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AoC1502Test {
 
     @Test
-    void testExample1() {
+    void testWrappingPaperExample1() {
         // arrange
 
         // act
@@ -21,7 +18,7 @@ class AoC1502Test {
     }
 
     @Test
-    void testExample2() {
+    void testWrappingPaperExample2() {
         // arrange
 
         // act
@@ -32,7 +29,7 @@ class AoC1502Test {
     }
 
     @Test
-    void testExampleAsString1() {
+    void testWrappingPaperExampleAsString1() {
         // arrange
 
         // act
@@ -43,7 +40,7 @@ class AoC1502Test {
     }
 
     @Test
-    void testExampleAsString2() {
+    void testWrappingPaperExampleAsString2() {
         // arrange
 
         // act
@@ -51,6 +48,50 @@ class AoC1502Test {
 
         // assert
         assertEquals(43, squareFeetOfWrappingPaper);
+    }
+
+    @Test
+    void testRibbonExample1() {
+        // arrange
+
+        // act
+        int lengthOfRibbon = AoC1502.calculateLengthOfRibbon(2, 3, 4);
+
+        // assert
+        assertEquals(34, lengthOfRibbon);
+    }
+
+    @Test
+    void testRibbonExample2() {
+        // arrange
+
+        // act
+        int lengthOfRibbon = AoC1502.calculateLengthOfRibbon(1, 1, 10);
+
+        // assert
+        assertEquals(14, lengthOfRibbon);
+    }
+
+    @Test
+    void testRibbonExampleAsString1() {
+        // arrange
+
+        // act
+        int lengthOfRibbon = AoC1502.calculateLengthOfRibbon("2x3x4");
+
+        // assert
+        assertEquals(34, lengthOfRibbon);
+    }
+
+    @Test
+    void testRibbonExampleAsString2() {
+        // arrange
+
+        // act
+        int lengthOfRibbon = AoC1502.calculateLengthOfRibbon("1x1x10");
+
+        // assert
+        assertEquals(14, lengthOfRibbon);
     }
 
     @Test
@@ -79,11 +120,13 @@ class AoC1502Test {
     @Test
     void part2() throws Exception {
         // arrange
+        AoC1502 aoC1502 = new AoC1502();
 
         // act
+        int sumOfRibbon = aoC1502.calculateSumOfRibbon("./src/test/resources/input");
 
         // assert
-        assertTrue(false);
+        assertEquals(3783758, sumOfRibbon);
     }
 
 }

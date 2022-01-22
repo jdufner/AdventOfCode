@@ -2,10 +2,14 @@ package de.jdufner.adventofcode.fifteen;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
 class AoC1502 {
+
+    static int calculateSquareFeetOfWrappingPaper(String s) {
+        String[] strings = parseString(s);
+        return calculateSquareFeetOfWrappingPaper(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+    }
 
     static int calculateSquareFeetOfWrappingPaper(int length, int width, int height) {
         int lengthWidth = length * width;
@@ -28,15 +32,39 @@ class AoC1502 {
         return s.split("x");
     }
 
-    static int calculateSquareFeetOfWrappingPaper(String s) {
-        String[] strings = parseString(s);
-        return calculateSquareFeetOfWrappingPaper(Integer.valueOf(strings[0]), Integer.valueOf(strings[1]), Integer.valueOf(strings[2]));
-    }
-
     int calculateSumOfWrappingPaper(String filename) throws Exception {
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
             return stream.mapToInt(AoC1502::calculateSquareFeetOfWrappingPaper).sum();
         }
-        //return 0;
     }
+
+    static int calculateLengthOfRibbon(String s) {
+        String[] strings = parseString(s);
+        return calculateLengthOfRibbon(Integer.parseInt(strings[0]), Integer.parseInt(strings[1]), Integer.parseInt(strings[2]));
+    }
+
+    static int calculateLengthOfRibbon(int length, int width, int height) {
+        return doubleLengthOfSmallestTwo(length, width, height) + volume(length, width, height);
+    }
+
+    private static int doubleLengthOfSmallestTwo(int length, int width, int height) {
+        if (length >= width && length >= height) {
+            return width * 2 + height * 2;
+        }
+        if (width >= length && width >= height) {
+            return length * 2 + height * 2;
+        }
+        return length * 2 + width * 2;
+    }
+
+    private static int volume(int length, int width, int height) {
+        return length * width * height;
+    }
+
+    public int calculateSumOfRibbon(String filename) throws Exception {
+        try (Stream<String> stream = Files.lines(Paths.get(filename))) {
+            return stream.mapToInt(AoC1502::calculateLengthOfRibbon).sum();
+        }
+    }
+
 }
