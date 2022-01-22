@@ -191,7 +191,7 @@ class AoC1501Test {
     @Test
     void part1() throws Exception {
         // arrange
-        Path filename = Path.of("./2015/01/src/test/resources/input");
+        Path filename = Path.of("./src/test/resources/input");
         String content = Files.readString(filename);
         AoC1501 aoC1501 = new AoC1501();
 
@@ -206,7 +206,7 @@ class AoC1501Test {
     @Test
     void part2() throws Exception {
         // arrange
-        Path filename = Path.of("./2015/01/src/test/resources/input");
+        Path filename = Path.of("./src/test/resources/input");
         String content = Files.readString(filename);
         AoC1501 aoC1501 = new AoC1501();
 
