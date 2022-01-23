@@ -2,6 +2,31 @@
 
 This repository stores my solutions of Advent of Code 2015.
 
+
 ## [Day 1](https://adventofcode.com/2015/day/1)
 
+Part 1: Just count opening and closing brackets.
+
+Part 2: Count again and stop on condition.
+
+
 ## [Day 2](https://adventofcode.com/2015/day/2)
+
+Part 1: Calculate required wrapping paper.
+
+Part 2: Calculate required ribbon.
+
+
+## [Day 3](https://adventofcode.com/2015/day/3)
+
+Part 1: Count visited positions.
+This exercise is much simpler if you use a separate class for the position (aka House).
+
+Part 2: Count visited positions for different walker.
+
+
+## [Day 4](https://adventofcode.com/2015/day/4)
+
+Part 1: Search a MD5 sum in hex format and starts with five zeros (00000). 
+
+Part 2: Search a MD5 sum in hex format and starts with six zeros (000000).
