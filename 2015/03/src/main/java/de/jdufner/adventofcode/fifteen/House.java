@@ -7,13 +7,21 @@ class House {
 
     static Map<String, House> mapOfHouses = new HashMap<>();
 
-    private int x = 0;
-    private int y = 0;
+    private final int x;
+    private final int y;
 
     House(int x, int y) {
         this.x = x;
         this.y = y;
         mapOfHouses.put(buildKey(), this);
+    }
+
+    static void reset() {
+        mapOfHouses = new HashMap<>();
+    }
+
+    static int getNumberAllHouses() {
+        return mapOfHouses.size();
     }
 
     private String buildKey() {
@@ -41,47 +49,39 @@ class House {
     }
 
     House top() {
-        String key = buildKey(x, y-1);
+        String key = buildKey(x, y - 1);
         House h = mapOfHouses.get(key);
         if (h == null) {
-            h = new House(x, y-1);
+            h = new House(x, y - 1);
         }
         return h;
     }
 
     House right() {
-        String key = buildKey(x+1, y);
+        String key = buildKey(x + 1, y);
         House h = mapOfHouses.get(key);
         if (h == null) {
-            h = new House(x+1, y);
+            h = new House(x + 1, y);
         }
         return h;
     }
 
     House bottom() {
-        String key = buildKey(x, y+1);
+        String key = buildKey(x, y + 1);
         House h = mapOfHouses.get(key);
         if (h == null) {
-            h = new House(x, y+1);
+            h = new House(x, y + 1);
         }
         return h;
     }
 
     House left() {
-        String key = buildKey(x-1, y);
+        String key = buildKey(x - 1, y);
         House h = mapOfHouses.get(key);
         if (h == null) {
-            h = new House(x-1, y);
+            h = new House(x - 1, y);
         }
         return h;
-    }
-
-    static void reset() {
-        mapOfHouses = new HashMap<>();
-    }
-
-    static int getNumberAllHouses() {
-        return mapOfHouses.size();
     }
 
 }

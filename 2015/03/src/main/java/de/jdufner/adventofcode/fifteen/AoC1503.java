@@ -17,4 +17,22 @@ class AoC1503 {
         return House.getNumberAllHouses();
     }
 
+    static int walkSantaAndRoboSanta(String s) {
+        House santa = new House(0, 0);
+        House roboSanta = new House(0, 0);
+
+        int index = 0;
+        byte[] chars = s.getBytes(StandardCharsets.UTF_8);
+        while (index < chars.length) {
+            if (index % 2 == 0) {
+                santa = santa.move(chars[index]);
+            } else {
+                roboSanta = roboSanta.move(chars[index]);
+            }
+            index++;
+        }
+
+        return House.getNumberAllHouses();
+    }
+
 }

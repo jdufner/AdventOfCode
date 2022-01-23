@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AoC1503Test {
 
     @Test
-    void testExample1() throws Exception {
+    void testExample1() {
         // arrange
         House.reset();
 
@@ -22,7 +22,7 @@ class AoC1503Test {
     }
 
     @Test
-    void testExample2() throws Exception {
+    void testExample2() {
         // arrange
         House.reset();
 
@@ -34,7 +34,7 @@ class AoC1503Test {
     }
 
     @Test
-    void testExample3() throws Exception {
+    void testExample3() {
         // arrange
         House.reset();
 
@@ -43,6 +43,42 @@ class AoC1503Test {
 
         // assert
         assertEquals(2, numberHouses);
+    }
+
+    @Test
+    void testSantaAndRoboSantaExample1() {
+        // arrange
+        House.reset();
+
+        // act
+        int numberHouses = AoC1503.walkSantaAndRoboSanta("^v");
+
+        // assert
+        assertEquals(3, numberHouses);
+    }
+
+    @Test
+    void testSantaAndRoboSantaExample2() {
+        // arrange
+        House.reset();
+
+        // act
+        int numberHouses = AoC1503.walkSantaAndRoboSanta("^>v<");
+
+        // assert
+        assertEquals(3, numberHouses);
+    }
+
+    @Test
+    void testSantaAndRoboSantaExample3() {
+        // arrange
+        House.reset();
+
+        // act
+        int numberHouses = AoC1503.walkSantaAndRoboSanta("^v^v^v^v^v");
+
+        // assert
+        assertEquals(11, numberHouses);
     }
 
     @Test
@@ -63,11 +99,14 @@ class AoC1503Test {
     void part2() throws Exception {
         // arrange
         House.reset();
+        Path filename = Path.of("./src/test/resources/input");
+        String content = Files.readString(filename);
 
         // act
+        int numberHouses = AoC1503.walkSantaAndRoboSanta(content);
 
         // assert
-        assertTrue(false);
+        assertEquals(2631, numberHouses);
     }
 
 }
