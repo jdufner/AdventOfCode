@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
-class AoC1506 {
+class AoC1506Part2 {
 
     public static final String TURN_ON = "turn on";
     public static final String TOGGLE = "toggle";
@@ -19,7 +19,7 @@ class AoC1506 {
     void turnOn(int left, int top, int right, int bottom) {
         for (int i = left; i <= right; i++) {
             for (int j = top; j <= bottom; j++) {
-                lights[i][j] = 1;
+                lights[i][j]++;
             }
         }
     }
@@ -27,7 +27,8 @@ class AoC1506 {
     void turnOff(int left, int top, int right, int bottom) {
         for (int i = left; i <= right; i++) {
             for (int j = top; j <= bottom; j++) {
-                lights[i][j] = 0;
+                if (lights[i][j]>0)
+                lights[i][j]--;
             }
         }
     }
@@ -35,22 +36,16 @@ class AoC1506 {
     void toggle(int left, int top, int right, int bottom) {
         for (int i = left; i <= right; i++) {
             for (int j = top; j <= bottom; j++) {
-                if (lights[i][j] == 1) {
-                    lights[i][j] = 0;
-                } else {
-                    lights[i][j] = 1;
-                }
+                lights[i][j] += 2;
             }
         }
     }
 
-    int countLightsLit() {
+    int sumLightsLit() {
         int lightsLit = 0;
         for (int i = 0; i < lights.length; i++) {
             for (int j = 0; j < lights[0].length; j++) {
-                if (lights[i][j] == 1) {
-                    lightsLit++;
-                }
+                lightsLit += lights[i][j];
             }
         }
         return lightsLit;
