@@ -3,7 +3,6 @@ package de.jdufner.adventofcode.fifteen;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AoC1507Test {
 
@@ -153,11 +152,14 @@ class AoC1507Test {
     @Test
     void part2() throws Exception {
         // arrange
+        AoC1507 aoC1507 = new AoC1507();
 
         // act
+        aoC1507.loadFile("./src/test/resources/input2");
+        aoC1507.evaluate();
 
         // assert
-        assertTrue(false);
+        assertEquals(40149, aoC1507.getEvaluated("a"));
     }
 
 }
