@@ -3,7 +3,6 @@ package de.jdufner.adventofcode.fifteen;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AoC1508Test {
 
@@ -109,7 +108,7 @@ class AoC1508Test {
         AoC1508 aoC1508 = new AoC1508();
 
         // act
-        int diff = aoC1508.difference("\"qxfcsmh\"");
+        int diff = aoC1508.differencePart1("\"qxfcsmh\"");
 
         // assert
         assertEquals(2, diff);
@@ -121,7 +120,7 @@ class AoC1508Test {
         AoC1508 aoC1508 = new AoC1508();
 
         // act
-        int diff = aoC1508.difference("\"ffsfyxbyuhqkpwatkjgudo\"");
+        int diff = aoC1508.differencePart1("\"ffsfyxbyuhqkpwatkjgudo\"");
 
         // assert
         assertEquals(2, diff);
@@ -133,10 +132,58 @@ class AoC1508Test {
         AoC1508 aoC1508 = new AoC1508();
 
         // act
-        int diff = aoC1508.difference("\"byc\\x9dyxuafof\\\\\\xa6uf\\\\axfozomj\\\\olh\\x6a\"");
+        int diff = aoC1508.differencePart1("\"byc\\x9dyxuafof\\\\\\xa6uf\\\\axfozomj\\\\olh\\x6a\"");
 
         // assert
         assertEquals(14, diff);
+    }
+
+    @Test
+    void whenCountEncodedChars1ExpectLengthSix() {
+        // arrange
+        AoC1508 aoC1508 = new AoC1508();
+
+        // act
+        int length = aoC1508.countEncodedChars("\"\"");
+
+        // assert
+        assertEquals(6, length);
+    }
+
+    @Test
+    void whenCountEncodedChars2ExpectLengthNine() {
+        // arrange
+        AoC1508 aoC1508 = new AoC1508();
+
+        // act
+        int length = aoC1508.countEncodedChars("\"abc\"");
+
+        // assert
+        assertEquals(9, length);
+    }
+
+    @Test
+    void whenCountEncodedChars4ExpectLengthSix() {
+        // arrange
+        AoC1508 aoC1508 = new AoC1508();
+
+        // act
+        int length = aoC1508.countEncodedChars("\"aaa\\\"aaa\"");
+
+        // assert
+        assertEquals(16, length);
+    }
+
+    @Test
+    void whenCountEncodedChars4ExpectLength11() {
+        // arrange
+        AoC1508 aoC1508 = new AoC1508();
+
+        // act
+        int length = aoC1508.countEncodedChars("\"\\x27\"");
+
+        // assert
+        assertEquals(11, length);
     }
 
     @Test
@@ -145,7 +192,7 @@ class AoC1508Test {
         AoC1508 aoC1508 = new AoC1508();
 
         // act
-        int i = aoC1508.differencesOfStrings("./src/test/resources/input");
+        int i = aoC1508.differencesOfStringsPart1("./src/test/resources/input");
 
         // assert
         assertEquals(1350, i);
@@ -154,11 +201,13 @@ class AoC1508Test {
     @Test
     void part2() throws Exception {
         // arrange
+        AoC1508 aoC1508 = new AoC1508();
 
         // act
+        int i = aoC1508.differencesOfStringsPart2("./src/test/resources/input");
 
         // assert
-        assertTrue(false);
+        assertEquals(2085, i);
     }
 
 }

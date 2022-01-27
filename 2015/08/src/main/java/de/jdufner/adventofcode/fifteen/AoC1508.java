@@ -33,15 +33,53 @@ class AoC1508 {
         return chars;
     }
 
-    int difference(String s) {
+    int differencePart1(String s) {
         int allChars = countAllChars(s);
         int effectiveChars = countEffectiveChars(s);
         return allChars - effectiveChars;
     }
 
-    int differencesOfStrings(String filename) throws IOException {
+    int countEncodedChars(String s) {
+        Matcher matcher = pattern.matcher(s);
+        int index = 0;
+        int chars = 2;
+        while (index < s.length()) {
+            if (matcher.find(index)) {
+                String str = matcher.group();
+                int strIndex = matcher.start();
+                if (str.startsWith("\"")) {
+                    chars += 2;
+                }
+                if (str.startsWith("\\\"")) {
+                    chars += 4;
+                }
+                if (str.startsWith("\\x")) {
+                    chars += 5;
+                }
+                if (str.startsWith("\\\\")) {
+                    chars += 4;
+                }
+                chars += strIndex - index;
+                index = strIndex + str.length();
+            }
+        }
+        return chars;
+    }
+    int differencePart2(String s) {
+        int allChars = countAllChars(s);
+        int countEncodedChars = countEncodedChars(s);
+        return countEncodedChars - allChars;
+    }
+
+    int differencesOfStringsPart1(String filename) throws IOException {
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
-            return stream.mapToInt(this::difference).sum();
+            return stream.mapToInt(this::differencePart1).sum();
+        }
+    }
+
+    int differencesOfStringsPart2(String filename) throws IOException {
+        try (Stream<String> stream = Files.lines(Paths.get(filename))) {
+            return stream.mapToInt(this::differencePart2).sum();
         }
     }
 
