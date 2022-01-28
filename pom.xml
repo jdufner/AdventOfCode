@@ -105,4 +105,15 @@
         </developer>
     </developers>
 
+    <modules>
+        <module>2015/01</module>
+        <module>2015/02</module>
+        <module>2015/03</module>
+        <module>2015/04</module>
+        <module>2015/05</module>
+        <module>2015/06</module>
+        <module>2015/07</module>
+        <module>2015/08</module>
+    </modules>
+
 </project>

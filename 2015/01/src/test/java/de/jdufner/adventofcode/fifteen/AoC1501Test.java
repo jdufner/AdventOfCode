@@ -195,7 +195,6 @@ class AoC1501Test {
 
         // act
         int level = aoC1501.countBrackets(content);
-        System.out.println(level);
 
         // assert
         assertEquals(74, level);
@@ -210,7 +209,6 @@ class AoC1501Test {
 
         // act
         int index = aoC1501.countBracketsByBaseLevel(content);
-        System.out.println(index);
 
         // assert
         assertEquals(1795, index);
