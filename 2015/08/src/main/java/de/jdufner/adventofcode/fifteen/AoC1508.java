@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 class AoC1508 {
 
-    Pattern pattern = Pattern.compile("(\")|(\\\\\\\\)|(\\\\\")|(\\\\x[0-9a-f]{2})");
+    private static final Pattern pattern = Pattern.compile("(\")|(\\\\\\\\)|(\\\\\")|(\\\\x[0-9a-f]{2})");
 
     int countAllChars(String s) {
         return s.length();
