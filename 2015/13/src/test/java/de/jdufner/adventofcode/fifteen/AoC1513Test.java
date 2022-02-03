@@ -7,99 +7,50 @@ import static org.assertj.core.api.Assertions.assertThat;
 class AoC1513Test {
 
     @Test
-    void whenSumExpect1() {
+    void whenMaximizeExampleExpect330() {
         // arrange
-        AoC1513 aoC1512 = new AoC1513();
+        AoC1513 aoC1513 = new AoC1513();
+        String s = """
+Alice would gain 54 happiness units by sitting next to Bob.
+Alice would lose 79 happiness units by sitting next to Carol.
+Alice would lose 2 happiness units by sitting next to David.
+Bob would gain 83 happiness units by sitting next to Alice.
+Bob would lose 7 happiness units by sitting next to Carol.
+Bob would lose 63 happiness units by sitting next to David.
+Carol would lose 62 happiness units by sitting next to Alice.
+Carol would gain 60 happiness units by sitting next to Bob.
+Carol would gain 55 happiness units by sitting next to David.
+David would gain 46 happiness units by sitting next to Alice.
+David would lose 7 happiness units by sitting next to Bob.
+David would gain 41 happiness units by sitting next to Carol.""";
 
         // act
-        int sumDigits = aoC1512.sumDigits("[1,2,3]");
+        int i = aoC1513.maximize(s);
 
         // assert
-        assertThat(sumDigits).isEqualTo(6);
-    }
-
-    @Test
-    void whenSumExpect2() {
-        // arrange
-        AoC1513 aoC1512 = new AoC1513();
-
-        // act
-        int sumDigits = aoC1512.sumDigits("{\"a\":2,\"b\":4}");
-
-        // assert
-        assertThat(sumDigits).isEqualTo(6);
-    }
-
-    @Test
-    void whenSumExpect3() {
-        // arrange
-        AoC1513 aoC1512 = new AoC1513();
-
-        // act
-        int sumDigits = aoC1512.sumDigits("[[[3]]]");
-
-        // assert
-        assertThat(sumDigits).isEqualTo(3);
-    }
-
-    @Test
-    void whenSumExpect4() {
-        // arrange
-        AoC1513 aoC1512 = new AoC1513();
-
-        // act
-        int sumDigits = aoC1512.sumDigits("{\"a\":{\"b\":4},\"c\":-1}");
-
-        // assert
-        assertThat(sumDigits).isEqualTo(3);
-    }
-
-    @Test
-    void whenSumExpect5() {
-        // arrange
-        AoC1513 aoC1512 = new AoC1513();
-
-        // act
-        int sumDigits = aoC1512.sumDigits("{\"a\":[-1,1]}");
-
-        // assert
-        assertThat(sumDigits).isEqualTo(0);
-    }
-
-    @Test
-    void whenSumExpect6() {
-        // arrange
-        AoC1513 aoC1512 = new AoC1513();
-
-        // act
-        int sumDigits = aoC1512.sumDigits("[-1,{\"a\":1}]");
-
-        // assert
-        assertThat(sumDigits).isEqualTo(0);
+        assertThat(i).isEqualTo(330);
     }
 
     @Test
     void part1() throws Exception {
         // arrange
-        AoC1513 aoC1512 = new AoC1513();
+        AoC1513 aoC1513 = new AoC1513();
 
         // act
-        int sumDigits = aoC1512.sumDigitsFromFile("./src/test/resources/input");
+        int i = aoC1513.maximizeFromFile("./src/test/resources/input");
 
         // assert
-        assertThat(sumDigits).isEqualTo(119433);
+        assertThat(i).isEqualTo(709);
     }
 
     @Test
-    void part2() throws Exception {
+    void part2() {
         // arrange
-        AoC1513 aoC1512 = new AoC1513();
 
         // act
-        int sumDigits = aoC1512.sumDigitsWithoutRedObjectsFromFile("./src/test/resources/input");
 
         // assert 1626 < 20602 < ? < 112648
-        assertThat(sumDigits).isEqualTo(68466);
+        assertThat(true).isFalse();
     }
 
 }
