@@ -44,13 +44,15 @@ David would gain 41 happiness units by sitting next to Carol.""";
     }
 
     @Test
-    void part2() {
+    void part2() throws Exception {
         // arrange
+        AoC1513 aoC1513 = new AoC1513();
 
         // act
+        int i = aoC1513.maximizeFromFile("./src/test/resources/input2");
 
-        // assert 1626 < 20602 < ? < 112648
-        assertThat(true).isFalse();
+        // assert
+        assertThat(i).isEqualTo(668);
     }
 
 }
