@@ -60,3 +60,39 @@ Solution idea: Brute force approach
 Remark: search duration not considered, since only few locations
 
 Part 2: 
+
+## [Day 9](https://adventofcode.com/2015/day/9)
+
+Part 1:
+
+Part 2: 
+
+## [Day 10](https://adventofcode.com/2015/day/10)
+
+Part 1:
+
+Part 2: 
+
+## [Day 11](https://adventofcode.com/2015/day/11)
+
+Part 1:
+
+Part 2: 
+
+## [Day 12](https://adventofcode.com/2015/day/12)
+
+Part 1:
+
+Part 2: 
+
+## [Day 13](https://adventofcode.com/2015/day/13)
+
+Part 1:
+
+Part 2: 
+
+## [Day 14](https://adventofcode.com/2015/day/14)
+
+Part 1:
+
+Part 2: 
