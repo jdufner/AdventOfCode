@@ -40,10 +40,6 @@ class Ingredient {
         return texture * teaspoons;
     }
 
-    int getCalories() {
-        return calories;
-    }
-
     public int getNumberOfTeaspoons() {
         return teaspoons;
     }
@@ -57,4 +53,9 @@ class Ingredient {
     void setNumberOfTeaspoons(int teaspoons) {
         this.teaspoons = teaspoons;
     }
+
+    int getCaloriesMultiplyByTeaspoons() {
+        return calories * teaspoons;
+    }
+
 }

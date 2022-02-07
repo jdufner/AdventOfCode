@@ -17,6 +17,10 @@ class AoC1515 {
 
     private int maxScore = 0;
 
+    private static int minZero(int value) {
+        return Math.max(0, value);
+    }
+
     int calculateScore(String filename, int sumOfTeaspoons) throws IOException {
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
             stream.forEach(this::parseString);
@@ -24,31 +28,63 @@ class AoC1515 {
         return optimizeIngredients(ingredients, 0, sumOfTeaspoons);
     }
 
+    int calculateScoreConsideringCalories(String filename, int sumOfTeaspoons, int sumOfCalories) throws IOException {
+        try (Stream<String> stream = Files.lines(Paths.get(filename))) {
+            stream.forEach(this::parseString);
+        }
+        return optimizeIngredientsConsideringCalories(ingredients, 0, sumOfTeaspoons, sumOfCalories);
+    }
+
     private int optimizeIngredients(List<Ingredient> ingredients, int indexOfIngredient, int sumOfTeaspoons) {
         for (int i = 0; i <= sumOfTeaspoons; i++) {
             ingredients.get(indexOfIngredient).setNumberOfTeaspoons(i);
-            if (indexOfIngredient < ingredients.size()-1) {
+            if (indexOfIngredient < ingredients.size() - 1) {
                 List<Ingredient> newIngredients = new ArrayList<>();
-                for (Ingredient ingredient: ingredients) {
+                for (Ingredient ingredient : ingredients) {
                     newIngredients.add(ingredient.copy());
                 }
                 optimizeIngredients(newIngredients, indexOfIngredient + 1, sumOfTeaspoons);
             } else {
-//                StringBuilder sb = new StringBuilder();
-//                for (int j = 0; j < ingredients.size(); j++) {
-//                    sb.append(ingredients.get(j).getName());
-//                    sb.append(": ");
-//                    sb.append(ingredients.get(j).getNumberOfTeaspoons());
-//                    sb.append(", ");
-//                }
                 int score = calculateScore(ingredients, sumOfTeaspoons);
                 if (score > maxScore) {
-//                    System.out.println(sb + " -> " + score);
+//                    buildString(ingredients, score);
                     maxScore = score;
                 }
             }
         }
         return maxScore;
+    }
+
+    private int optimizeIngredientsConsideringCalories(List<Ingredient> ingredients, int indexOfIngredient, int sumOfTeaspoons, int sumOfCalories) {
+        for (int i = 0; i <= sumOfTeaspoons; i++) {
+            ingredients.get(indexOfIngredient).setNumberOfTeaspoons(i);
+            if (indexOfIngredient < ingredients.size() - 1) {
+                List<Ingredient> newIngredients = new ArrayList<>();
+                for (Ingredient ingredient : ingredients) {
+                    newIngredients.add(ingredient.copy());
+                }
+                optimizeIngredientsConsideringCalories(newIngredients, indexOfIngredient + 1, sumOfTeaspoons, sumOfCalories);
+            } else {
+                int score = calculateScore(ingredients, sumOfTeaspoons);
+                int calories = calculateCalories(ingredients);
+                if (score > maxScore && calories == sumOfCalories) {
+//                    buildString(ingredients, score);
+                    maxScore = score;
+                }
+            }
+        }
+        return maxScore;
+    }
+
+    private void buildString(List<Ingredient> ingredients, int score) {
+        StringBuilder sb = new StringBuilder();
+        for (Ingredient ingredient: ingredients) {
+            sb.append(ingredient.getName());
+            sb.append(": ");
+            sb.append(ingredient.getNumberOfTeaspoons());
+            sb.append(", ");
+        }
+        System.out.println(sb + " -> " + score);
     }
 
     private void parseString(String line) {
@@ -68,8 +104,12 @@ class AoC1515 {
         return 0;
     }
 
-    private static int minZero(int value) {
-        return Math.max(0, value);
+    int calculateCalories(List<Ingredient> ingredients) {
+        return minZero(ingredients.stream().mapToInt(this::calculateCalories).sum());
+    }
+
+    private int calculateCalories(Ingredient ingredient) {
+        return ingredient.getCaloriesMultiplyByTeaspoons();
     }
 
     private int sumOfTeaspoons(List<Ingredient> ingredients) {
