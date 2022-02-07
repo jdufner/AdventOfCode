@@ -15,6 +15,8 @@ class AoC1515 {
 
     private final List<Ingredient> ingredients = new ArrayList<>();
 
+    private int maxScore = 0;
+
     int calculateScore(String filename, int sumOfTeaspoons) throws IOException {
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
             stream.forEach(this::parseString);
@@ -23,23 +25,30 @@ class AoC1515 {
     }
 
     private int optimizeIngredients(List<Ingredient> ingredients, int indexOfIngredient, int sumOfTeaspoons) {
-        for (int i = indexOfIngredient; i < ingredients.size(); i++) {
-            int score = calculateScore(ingredients, sumOfTeaspoons);
-            if (ingredients.get(indexOfIngredient).getNumberOfTeaspoons() <= sumOfTeaspoons) {
+        for (int i = 0; i <= sumOfTeaspoons; i++) {
+            ingredients.get(indexOfIngredient).setNumberOfTeaspoons(i);
+            if (indexOfIngredient < ingredients.size()-1) {
                 List<Ingredient> newIngredients = new ArrayList<>();
-                for (int j = 0; j < ingredients.size(); j++) {
-                    if (indexOfIngredient == j) {
-                        newIngredients.add(ingredients.get(j).incrementAndCopy());
-                    } else {
-                        newIngredients.add(ingredients.get(j).copy());
-                    }
+                for (Ingredient ingredient: ingredients) {
+                    newIngredients.add(ingredient.copy());
                 }
-                optimizeIngredients(newIngredients, indexOfIngredient, sumOfTeaspoons);
+                optimizeIngredients(newIngredients, indexOfIngredient + 1, sumOfTeaspoons);
             } else {
-                ingredients.get(indexOfIngredient).resetNumberOfTeaspoons();
+//                StringBuilder sb = new StringBuilder();
+//                for (int j = 0; j < ingredients.size(); j++) {
+//                    sb.append(ingredients.get(j).getName());
+//                    sb.append(": ");
+//                    sb.append(ingredients.get(j).getNumberOfTeaspoons());
+//                    sb.append(", ");
+//                }
+                int score = calculateScore(ingredients, sumOfTeaspoons);
+                if (score > maxScore) {
+//                    System.out.println(sb + " -> " + score);
+                    maxScore = score;
+                }
             }
         }
-        return 0;
+        return maxScore;
     }
 
     private void parseString(String line) {
@@ -49,14 +58,18 @@ class AoC1515 {
         }
     }
 
-    private int calculateScore(List<Ingredient> ingredients, int sumOfTeaspoons) {
+    int calculateScore(List<Ingredient> ingredients, int sumOfTeaspoons) {
         if (sumOfTeaspoons(ingredients) == sumOfTeaspoons) {
-            return ingredients.stream().mapToInt(this::calculateCapacity).sum() *
-                    ingredients.stream().mapToInt(this::calculateDurability).sum() *
-                    ingredients.stream().mapToInt(this::calculateFlavor).sum() *
-                    ingredients.stream().mapToInt(this::calculateTexture).sum();
+            return minZero(ingredients.stream().mapToInt(this::calculateCapacity).sum()) *
+                    minZero(ingredients.stream().mapToInt(this::calculateDurability).sum()) *
+                    minZero(ingredients.stream().mapToInt(this::calculateFlavor).sum()) *
+                    minZero(ingredients.stream().mapToInt(this::calculateTexture).sum());
         }
         return 0;
+    }
+
+    private static int minZero(int value) {
+        return Math.max(0, value);
     }
 
     private int sumOfTeaspoons(List<Ingredient> ingredients) {

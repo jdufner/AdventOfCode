@@ -20,31 +20,24 @@ class Ingredient {
         this.calories = calories;
     }
 
-    private static int minZero(int value) {
-        if (value < 0) {
-            return 0;
-        }
-        return value;
-    }
-
     String getName() {
         return name;
     }
 
     int calculateCapacityMultiplyByTeaspoons() {
-        return minZero(capacity * teaspoons);
+        return capacity * teaspoons;
     }
 
     int calculateDurabilityMultiplyByTeaspoons() {
-        return minZero(durability * teaspoons);
+        return durability * teaspoons;
     }
 
     int calculateFlavorMultiplyByTeaspoons() {
-        return minZero(flavor * teaspoons);
+        return flavor * teaspoons;
     }
 
     int calculateTextureMultiplyByTeaspoons() {
-        return minZero(texture * teaspoons);
+        return texture * teaspoons;
     }
 
     int getCalories() {
@@ -61,17 +54,7 @@ class Ingredient {
         return i;
     }
 
-    Ingredient incrementAndCopy() {
-        Ingredient i = new Ingredient(name, capacity, durability, flavor, texture, calories);
-        i.teaspoons = teaspoons + 1;
-        return i;
-    }
-
-    void increment() {
-        teaspoons += 1;
-    }
-
-    void resetNumberOfTeaspoons() {
-        teaspoons = 0;
+    void setNumberOfTeaspoons(int teaspoons) {
+        this.teaspoons = teaspoons;
     }
 }
