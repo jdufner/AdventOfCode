@@ -3,10 +3,7 @@ package de.jdufner.adventofcode.fifteen;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -19,12 +16,62 @@ class AoC1519 {
     private final List<Replacement> replacements = new ArrayList<>();
     private final Set<String> molecules = new HashSet<>();
 
-    public int countDistinctMolecules(String filename) throws IOException {
+    public int countDistinctMoleculesPart1(String filename) throws IOException {
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
             stream.forEach(this::parseString);
         }
         Set<String> nextGenMolecules = iterate(molecules);
         return nextGenMolecules.size();
+    }
+
+    public int countDistinctMoleculesPart2b(String filename) throws IOException {
+        try (Stream<String> stream = Files.lines(Paths.get(filename))) {
+            stream.forEach(this::parseString);
+        }
+        replacements.sort((o1, o2) -> o2.to().length() - o1.to().length());
+        return inverseRecursive(1, molecules);
+    }
+
+    private int inverseRecursive(int steps, Set<String> molecules) {
+        Set<String> previousGenMolecules = inverse(molecules);
+        if (previousGenMolecules.contains("e")) {
+            return steps;
+        } else {
+            return inverseRecursive(steps + 1, previousGenMolecules);
+        }
+    }
+
+    private Set<String> inverse(Set<String> molecules) {
+        Set<String> previousGenMolecules = new HashSet<>();
+        int i = 0;
+        for (String molecule : molecules) {
+            if (i < 1000) {
+                int index = 0;
+                while (index < molecule.length()) {
+                    for (Replacement replacement : replacements) {
+                        if (replacement.from().equals("e") && !replacement.to().equals(molecule)) {
+                            continue;
+                        }
+                        if (index + replacement.to().length() <= molecule.length()) {
+                            String substring = molecule.substring(index, index + replacement.to().length());
+                            if (substring.equals(replacement.to())) {
+                                String previousGenMolecule = replace(molecule, index, replacement.to().length(), replacement.from());
+                                previousGenMolecules.add(previousGenMolecule);
+                            }
+                        }
+                    }
+                    index++;
+                }
+            }
+            i++;
+        }
+        return previousGenMolecules;
+    }
+
+    private String replace(String molecule, int index, int length, String replacement) {
+        String prefix = molecule.substring(0, index);
+        String postfix = molecule.substring(index + length);
+        return prefix + replacement + postfix;
     }
 
     private Set<String> iterate(Set<String> molecules) {
