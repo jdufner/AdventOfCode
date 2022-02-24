@@ -36,7 +36,7 @@ class AoC1519Test {
         AoC1519 aoC1519 = new AoC1519();
 
         // act
-        int molecules = aoC1519.countDistinctMoleculesPart2b("./src/test/resources/test3");
+        int molecules = aoC1519.countDistinctMoleculesPart2("./src/test/resources/test3");
 
         // assert
         assertThat(molecules).isEqualTo(3);
@@ -48,7 +48,7 @@ class AoC1519Test {
         AoC1519 aoC1519 = new AoC1519();
 
         // act
-        int molecules = aoC1519.countDistinctMoleculesPart2b("./src/test/resources/test4");
+        int molecules = aoC1519.countDistinctMoleculesPart2("./src/test/resources/test4");
 
         // assert
         assertThat(molecules).isEqualTo(6);
@@ -72,7 +72,7 @@ class AoC1519Test {
         AoC1519 aoC1519 = new AoC1519();
 
         // act
-        int molecules = aoC1519.countDistinctMoleculesPart2b("./src/test/resources/input");
+        int molecules = aoC1519.countDistinctMoleculesPart2("./src/test/resources/input");
 
         // assert
         assertThat(molecules).isEqualTo(212);

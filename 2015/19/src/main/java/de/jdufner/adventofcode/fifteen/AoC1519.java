@@ -15,8 +15,9 @@ class AoC1519 {
 
     private final List<Replacement> replacements = new ArrayList<>();
     private final Set<String> molecules = new HashSet<>();
+    private final Set<String> deadEnds = new TreeSet<>();
 
-    public int countDistinctMoleculesPart1(String filename) throws IOException {
+    int countDistinctMoleculesPart1(String filename) throws IOException {
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
             stream.forEach(this::parseString);
         }
@@ -24,13 +25,54 @@ class AoC1519 {
         return nextGenMolecules.size();
     }
 
-    public int countDistinctMoleculesPart2b(String filename) throws IOException {
+    int countDistinctMoleculesPart2(String filename) throws IOException {
         try (Stream<String> stream = Files.lines(Paths.get(filename))) {
             stream.forEach(this::parseString);
         }
         replacements.sort((o1, o2) -> o2.to().length() - o1.to().length());
-        return inverseRecursive(1, molecules);
+        return inverseRecursive(1, getMolecule());
     }
+
+    private String getMolecule() {
+        for (String molecule : molecules) {
+            return molecule;
+        }
+        return null;
+    }
+
+    private int inverseRecursive(int steps, String molecule) {
+        int index = 0;
+        if (steps == 150) {
+            System.out.println(deadEnds.size());
+        }
+        if (!deadEnds.contains(molecule)) {
+            while (index < molecule.length()) {
+                for (Replacement replacement : replacements) {
+                    if (replacement.from().equals("e") && !replacement.to().equals(molecule)) {
+                        continue;
+                    }
+                    if (index + replacement.to().length() <= molecule.length()) {
+                        String substring = molecule.substring(index, index + replacement.to().length());
+                        if (substring.equals(replacement.to())) {
+                            String previousGenMolecule = replace(molecule, index, replacement.to().length(), replacement.from());
+                            if (previousGenMolecule.equals("e")) {
+                                return steps;
+                            } else {
+                                int depth = inverseRecursive(steps + 1, previousGenMolecule);
+                                if (depth > 0) {
+                                    return depth;
+                                }
+                            }
+                        }
+                    }
+                }
+                index++;
+            }
+            deadEnds.add(molecule);
+        }
+        return -1;
+    }
+
 
     private int inverseRecursive(int steps, Set<String> molecules) {
         Set<String> previousGenMolecules = inverse(molecules);
