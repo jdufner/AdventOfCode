@@ -3,17 +3,18 @@ package de.jdufner.adventofcode.fifteen;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import static de.jdufner.adventofcode.fifteen.AoC1520SinglethreadedPart1.calculateNumberOfPresents;
+import static de.jdufner.adventofcode.fifteen.AoC1520SinglethreadedPart2.calculateNumberOfPresents;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AoC1520Test {
+class AoC1520SinglethreadedTest {
 
   @Test
   void whenHouse1Expect10Presents() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
 
     // act
-    int presents = aoC1520Part1.getSum(1);
+    int presents = calculateNumberOfPresents(1);
 
     // assert
     assertThat(presents).isEqualTo(10);
@@ -22,10 +23,9 @@ class AoC1520Test {
   @Test
   void whenHouse2Expect30Presents() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
 
     // act
-    int presents = aoC1520Part1.getSum(2);
+    int presents = calculateNumberOfPresents(2);
 
     // assert
     assertThat(presents).isEqualTo(30);
@@ -34,10 +34,9 @@ class AoC1520Test {
   @Test
   void whenHouse3Expect40Presents() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
 
     // act
-    int presents = aoC1520Part1.getSum(3);
+    int presents = calculateNumberOfPresents(3);
 
     // assert
     assertThat(presents).isEqualTo(40);
@@ -46,10 +45,9 @@ class AoC1520Test {
   @Test
   void whenHouse4Expect70Presents() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
 
     // act
-    int presents = aoC1520Part1.getSum(4);
+    int presents = calculateNumberOfPresents(4);
 
     // assert
     assertThat(presents).isEqualTo(70);
@@ -58,10 +56,9 @@ class AoC1520Test {
   @Test
   void whenHouse5Expect60Presents() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
 
     // act
-    int presents = aoC1520Part1.getSum(5);
+    int presents = calculateNumberOfPresents(5);
 
     // assert
     assertThat(presents).isEqualTo(60);
@@ -70,10 +67,9 @@ class AoC1520Test {
   @Test
   void whenHouse6Expect120Presents() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
 
     // act
-    int presents = aoC1520Part1.getSum(6);
+    int presents = calculateNumberOfPresents(6);
 
     // assert
     assertThat(presents).isEqualTo(120);
@@ -82,10 +78,9 @@ class AoC1520Test {
   @Test
   void whenHouse7Expect80Presents() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
 
     // act
-    int presents = aoC1520Part1.getSum(7);
+    int presents = calculateNumberOfPresents(7);
 
     // assert
     assertThat(presents).isEqualTo(80);
@@ -94,10 +89,9 @@ class AoC1520Test {
   @Test
   void whenHouse8Expect150Presents() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
 
     // act
-    int presents = aoC1520Part1.getSum(8);
+    int presents = calculateNumberOfPresents(8);
 
     // assert
     assertThat(presents).isEqualTo(150);
@@ -106,10 +100,9 @@ class AoC1520Test {
   @Test
   void whenHouse9Expect130Presents() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
 
     // act
-    int presents = aoC1520Part1.getSum(9);
+    int presents = calculateNumberOfPresents(9);
 
     // assert
     assertThat(presents).isEqualTo(130);
@@ -118,10 +111,10 @@ class AoC1520Test {
   @Test
   void when10PresentsExpectHouse1() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
+    AoC1520SinglethreadedPart1 aoC1520SinglethreadedPart1 = new AoC1520SinglethreadedPart1();
 
     // act
-    int house = aoC1520Part1.findHouseForPresents(10);
+    int house = aoC1520SinglethreadedPart1.findHouseForPresents(10);
 
     // assert
     assertThat(house).isEqualTo(1);
@@ -130,10 +123,10 @@ class AoC1520Test {
   @Test
   void when30PresentsExpectHouse2() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
+    AoC1520SinglethreadedPart1 aoC1520SinglethreadedPart1 = new AoC1520SinglethreadedPart1();
 
     // act
-    int house = aoC1520Part1.findHouseForPresents(30);
+    int house = aoC1520SinglethreadedPart1.findHouseForPresents(30);
 
     // assert
     assertThat(house).isEqualTo(2);
@@ -142,10 +135,10 @@ class AoC1520Test {
   @Test
   void when40PresentsExpectHouse3() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
+    AoC1520SinglethreadedPart1 aoC1520SinglethreadedPart1 = new AoC1520SinglethreadedPart1();
 
     // act
-    int house = aoC1520Part1.findHouseForPresents(40);
+    int house = aoC1520SinglethreadedPart1.findHouseForPresents(40);
 
     // assert
     assertThat(house).isEqualTo(3);
@@ -154,10 +147,9 @@ class AoC1520Test {
   @Test
   void whenHouse1Expect11Presents() {
     // arrange
-    AoC1520Part2 aoC1520Part2 = new AoC1520Part2();
 
     // act
-    int presents = aoC1520Part2.getSum(1, 1);
+    int presents = calculateNumberOfPresents(1, 1);
 
     // assert
     assertThat(presents).isEqualTo(11);
@@ -166,10 +158,9 @@ class AoC1520Test {
   @Test
   void whenHouse2Expect33Presents() {
     // arrange
-    AoC1520Part2 aoC1520Part2 = new AoC1520Part2();
 
     // act
-    int presents = aoC1520Part2.getSum(2, 2);
+    int presents = calculateNumberOfPresents(2, 2);
 
     // assert
     assertThat(presents).isEqualTo(33);
@@ -178,10 +169,9 @@ class AoC1520Test {
   @Test
   void whenHouse9Expect99Presents() {
     // arrange
-    AoC1520Part2 aoC1520Part2 = new AoC1520Part2();
 
     // act
-    int presents = aoC1520Part2.getSum(9, 2);
+    int presents = calculateNumberOfPresents(9, 2);
 
     // assert
     assertThat(presents).isEqualTo(99);
@@ -190,10 +180,9 @@ class AoC1520Test {
   @Test
   void whenHouse9Expect132Presents() {
     // arrange
-    AoC1520Part2 aoC1520Part2 = new AoC1520Part2();
 
     // act
-    int presents = aoC1520Part2.getSum(9, 3);
+    int presents = calculateNumberOfPresents(9, 3);
 
     // assert
     assertThat(presents).isEqualTo(132);
@@ -203,10 +192,10 @@ class AoC1520Test {
   @Disabled
   void part1() {
     // arrange
-    AoC1520Part1 aoC1520Part1 = new AoC1520Part1();
+    AoC1520SinglethreadedPart1 aoC1520SinglethreadedPart1 = new AoC1520SinglethreadedPart1();
 
     // act
-    int house = aoC1520Part1.findHouseForPresents(33_100_000);
+    int house = aoC1520SinglethreadedPart1.findHouseForPresents(33_100_000);
 
     // assert
     assertThat(house).isEqualTo(776_160);
@@ -216,10 +205,10 @@ class AoC1520Test {
   @Disabled
   void part2() {
     // arrange
-    AoC1520Part2 aoC1520Part2 = new AoC1520Part2();
+    AoC1520SinglethreadedPart2 aoC1520SinglethreadedPart2 = new AoC1520SinglethreadedPart2();
 
     // act
-    int house = aoC1520Part2.findHouseForPresents(33_100_000, 50);
+    int house = aoC1520SinglethreadedPart2.findHouseForPresents(33_100_000, 50);
 
     // assert
     assertThat(house).isEqualTo(786_240);
